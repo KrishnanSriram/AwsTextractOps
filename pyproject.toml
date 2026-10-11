@@ -1,0 +1,19 @@
+[project]
+name = "textract"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Krishnan", email = "krishnan.sriram@hotmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "boto3>=1.43.111",
+]
+
+[project.scripts]
+textract = "textract:main"
+
+[build-system]
+requires = ["uv_build>=0.12.3,<0.13.0"]
+build-backend = "uv_build"
