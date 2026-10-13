@@ -1,0 +1,7 @@
+fields @timestamp
+| filter ispresent(usage_event)
+| stats earliest(file) as doc_file, earliest(caller) as submitted_by,
+        max(pages) as doc_pages, sum(GuardrailTextUnits) as doc_units by team, job_id
+| fields team, doc_file, submitted_by, doc_pages, doc_units,
+         doc_pages * 0.0015 + doc_units * 0.0001 as cost_usd
+| sort team, doc_file

@@ -1,0 +1,9 @@
+fields @timestamp
+| filter ispresent(usage_event)
+| stats max(pages) as doc_pages, sum(GuardrailTextUnits) as doc_units by team, job_id
+| stats count(*) as documents, sum(doc_pages) as total_pages, sum(doc_units) as total_text_units by team
+| fields team, documents, total_pages, total_text_units,
+         total_pages * 0.0015 as textract_usd,
+         total_text_units * 0.0001 as guardrails_usd,
+         total_pages * 0.0015 + total_text_units * 0.0001 as total_usd
+| sort team

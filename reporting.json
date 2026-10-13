@@ -1,0 +1,26 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "QueryUsageLogs",
+      "Effect": "Allow",
+      "Action": ["logs:StartQuery", "logs:FilterLogEvents", "logs:GetLogEvents"],
+      "Resource": "arn:aws:logs:us-east-2:393840684076:log-group:/aws/lambda/lambda-textract-oh-dev-01:*"
+    },
+    {
+      "Sid": "ReadQueryResults",
+      "Effect": "Allow",
+      "Action": [
+        "logs:GetQueryResults", "logs:StopQuery", "logs:DescribeQueries",
+        "logs:DescribeLogGroups", "logs:DescribeQueryDefinitions", "logs:PutQueryDefinition"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "ReadUsageMetrics",
+      "Effect": "Allow",
+      "Action": ["cloudwatch:GetMetricData", "cloudwatch:GetMetricStatistics", "cloudwatch:ListMetrics"],
+      "Resource": "*"
+    }
+  ]
+}
